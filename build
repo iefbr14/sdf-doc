@@ -85,7 +85,9 @@ while (defined($doc = shift(@ARGV))) {
 
     # Generate the required outputs
     for $fmt (@fmts) {
+	next if ($PDF == 0 && $fmt eq 'book -zpdf');
 	next if ($PDF == 0 && $fmt eq 'pdf');
+	next if ($PDF == 0 && $fmt eq 'ps');
 
         print "EXECUTING: sdf -2$fmt $file\n";
         system("sdf -2$fmt $file");

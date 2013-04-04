@@ -36,7 +36,7 @@ keywords|word processing, desktop publishing,\
 !default BUGSDB_PAGE    "$var{'WEB_SITE'}bugs/index.html"
 
 # Links to third-party stuff
-!default PERL_URL       "http://www.perl.com"
+!default PERL_URL       "http://www.perl.org"
 !default POD2PS_URL     "http://www.oasis.leo.org/perl/scripts/textproc/pod2ps.dsc.html"
 !default SGMLTOOLS_URL  "http://www.xs4all.nl/~cg/sgmltools/"
 !default FRAME_URL      "http://www.adobe.com/prodindex/framemaker/main.html"
@@ -55,7 +55,7 @@ Reference
 [[sqbullet]]\
 {{A[jump="catalog.html"]                Document Catalog}}[[nl]]\
 [[sqbullet]]\
-{{A[jump="faq/index.html"]              Frequently Asked Questions}}[[nl]]\
+{{A[jump="faq/faq.html"]                Frequently Asked Questions}}[[nl]]\
 [[sqbullet]]\
 {{A[jump="paper/sdfintro.html"]         Overview Paper}}
 S<    >
@@ -71,13 +71,14 @@ S<    >
 ||
 What is it?||<<
     SDF is a freely available documentation system designed and developed by
-    {{A[jump="mailto:ianc@mincom.com"] Ian Clatworthy}}, with help from
-    many others. Based on a simple, readable markup language,
+    {{B: Ian Clatworthy}}, with help from many others. 
+    It is now supported by 
+    {{B[jump="mailto:drew@ss.org"] Drew Sullivan}}
+    Based on a simple, readable markup language,
     SDF generates high quality output in multiple formats, all 
     derived from a single document source.
     Supported output formats include HTML, PostScript, PDF, man pages,
-    POD, LaTeX, SGML, MIMS HTX and F6 help, MIF, RTF,
-    Windows help and plain text.
+    POD, LaTeX, SGML, and plain text.
     If you want to:
 
     [[sqbullet]] publish documents or reports on the Web or in
@@ -92,21 +93,12 @@ What is it?||<<
 ||
 What does it need?||<<
 
-    [[sqbullet]] {{A[jump="http://www.perl.com/perl/"]Perl}} 5.005 or later.[[nl]]
+    [[sqbullet]] {{A[jump="http://www.perl.org/perl/"]Perl}} 5.006 or later.[[nl]]
     [[sqbullet]] For generating PostScript, the freely available
     {{A[jump="http://www.easysw.com/~mike/htmldoc/"]HTMLDOC}} program or
     {{A[jump="http://www.oasis.leo.org/perl/scripts/textproc/pod2ps.dsc.html"]pod2ps}}
      program or {{A[jump="http://www.xs4all.nl/~cg/sgmltools/"]SGML-Tools}}
-     and LaTeX packages. Alternatively, you need
-    a word processor which can import MIF or RTF -
-    Adobe's
-    {{A[jump="http://www.adobe.com/prodindex/framemaker/main.html"]FrameMaker}}
-    is preferred.[[nl]]
-    [[sqbullet]] For generating PDF,
-    {{A[jump="http://www.adobe.com"]Adobe's}}
-    {{A[jump="http://www.adobe.com/prodindex/acrobat/"]Acrobat}}
-    is recommended.[[nl]]
-    [[sqbullet]] For generating Windows Help files, a help compiler is required.
+     and LaTeX packages. 
 >>
 
 ||
@@ -129,7 +121,35 @@ Support?||<<
     with {{subscribe sdf-bugs}} or {{subscribe sdf-users}}
     as the message body.
 >>
-!endblock
 
+
+||
+Future||<<
+	Support of Libra Office file formats are planned to replace the FrameMaker conversion.
+	Support for epub is on the todo list.
+>>
+
+||
+End of Life||<<
+	Framemaker and other commercial software is being de-supported.
+	If someone else wants to support it they are welcome to.
+	Support for MIF, RTF, MIMS, HTX and F6 help, and other Windows only
+	formats may be broken as that
+	part of the tool chain is no longer verified as working.
+
+	Alternatively, you need
+	a word processor which can import MIF or RTF -
+	Adobe's
+	{{A[jump="http://www.adobe.com/prodindex/framemaker/main.html"]FrameMaker}}
+	is preferred.[[nl]]
+	[[sqbullet]] For generating PDF,
+	{{A[jump="http://www.adobe.com"]Adobe's}}
+	{{A[jump="http://www.adobe.com/prodindex/acrobat/"]Acrobat}}
+	is recommended.[[nl]]
+	[[sqbullet]] For generating Windows Help files, a help compiler is required.
+>> 
+!endblock
+   
 N[align=Center] Questions about these pages?
 Send some mail to {{EMAIL:sdf-bugs@mincom.com}}.
+

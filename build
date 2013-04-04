@@ -14,15 +14,67 @@
 # -----------------------------------------------------------------------
 #
 
+=head1 NAME
+
+=head1 USAGE
+
+=head1 REQUIRED ARGUMENTS
+
+=head1 OPTION
+
+=head1 DESCRIPTION
+
+=head1 DIAGNOSTICS
+
+=head1 EXIT STATUS
+
+=head1 CONFIGURATION
+
+=head1 DEPENDENCIES
+
+=head1 INCOMPATIBILITIES
+
+=head1 BUGS AND LIMITATIONS
+
+=head1 AUTHOR
+
+=head1 LICENSE COPYRIGHT
+
+=cut
+
+use strict;
+use warnings;
+use Getopt::Std;
+
+sub usage {
+	die <<"EOF";
+Usage: $0 [options...] [args]...
+   -- build the hmtl tree 
+Options:
+   -x     -- turn Debugging on.
+   -F     -- Force build 
+   -O :   -- Set target build directory (default html)
+Notes:
+   By default: build those files have changed relative to main docs.
+EOF
+}
+
+my(%Opt);
+getopts('xO:', \%Opt) || usage;
+
+my($Debug) = $Opt{x} || 0;
+my($Html)  = $Opt{O} || 'html';
+
 use Cwd;
+use File::Path;
 
 require "sdf/name.pl";
 
 # The root directory for documents
-$DOC_ROOT = cwd();
+my $DOC_ROOT = cwd();
 
 # The formats to build for each document
-%FMTS = (
+my %FMTS = (
     "paper/sdfintro",   ['pdf', 'html'],
     "quickref/qr_sdf",  ['pdf', 'html'],
     "user/ug_sdf",      ['book -zpdf', 'topics'],
@@ -35,8 +87,9 @@ $DOC_ROOT = cwd();
 );
 
 # Symbolic names for sets of documents
-%TAGS = (
+my %TAGS = (
     "all",      [sort keys %FMTS],
+    "local",    [home => [ 'html'], 'catalog' => ['html']],
 );
 
 # Check the usage
@@ -48,11 +101,13 @@ unless (@ARGV) {
     exit 1;
 }
 
+$Html = "$DOC_ROOT/$Html" unless substr($Html, 0, 1) eq '/';
+mkpath($Html, 1, 0755);
+
 # Check for local mode
 if ($ARGV[0] eq 'local') {
-    print "EXECUTING: sdf -2html -DLOCAL_DOCS home catalog\n";
-    system("sdf -2html -DLOCAL_DOCS home catalog");
-    exit();
+	prep('home', 'catalog');
+	exit();
 }
 
 my $PDF = 0;
@@ -63,8 +118,8 @@ if ($ARGV[0] eq 'pdf') {
 }
 
 # Generate the documents
-while (defined($doc = shift(@ARGV))) {
-
+my($doc);
+while (defined($doc = shift @ARGV)) {
     # Expand symbolic names
     if ($TAGS{$doc}) {
         unshift(@ARGV, @{$TAGS{$doc}});
@@ -72,32 +127,61 @@ while (defined($doc = shift(@ARGV))) {
     }
 
     # Get the formats to generate for this document
-    @fmts = @{$FMTS{$doc}};
-    unless (@fmts) {
+    unless (defined $FMTS{$doc}) {
         print "error: unknown document '$doc'\n";
         next;
     }
+    my @fmts = @{$FMTS{$doc}};
 
     # Change to the directory holding the document
-    ($dir, $file) = &NameSplit($doc);
+    my($dir, $file) = &NameSplit($doc);
     chdir "$DOC_ROOT/$dir";
     print "CHANGED TO: ", `pwd`;
 
     # Generate the required outputs
-    for $fmt (@fmts) {
+    for my $fmt (@fmts) {
 	next if ($PDF == 0 && $fmt eq 'book -zpdf');
 	next if ($PDF == 0 && $fmt eq 'pdf');
 	next if ($PDF == 0 && $fmt eq 'ps');
 
-        print "EXECUTING: sdf -2$fmt $file\n";
-        system("sdf -2$fmt $file");
+	mkpath("$Html/$dir", 1, 0755);
+	my($cmd) = "sdf -O'$Html/$dir' -2$fmt $file";
+        print "EXECUTING: $cmd\n";
+        system($cmd);
     }
+
+	chdir $DOC_ROOT;
+
+	#### BUG IN sdf -O , html files are left in source direcctory)
+	for my $fook (<$dir/*.html>) {
+		my($new) = $fook; $new =~ s=.*/=$Html/$dir/=;
+print "fook $fook => $new\n";
+		rename($fook, $new);
+	}
+	if (-f "$Html/$dir/$file.html") {
+		symlink("$file.html", "$Html/$dir/index.html");
+	}
+}
+
+sub prep {
+	my(@docs) = @_;
+
+	my($cmd) = "sdf -O'$Html' -2html -DLOCAL_DOCS @docs";
+	print "EXECUTING: $cmd\n";
+	system($cmd);
+
+	for my $doc (@docs) {
+		if ($doc eq 'home') {
+			symlink("$doc.html", "$Html/index.html");
+		}
+	}
 }
 
 # Update the home page, document catalog and INSTALL notes
 chdir $DOC_ROOT;
-print "CHANGED TO: ", `pwd`;
-print "EXECUTING: sdf -2html home catalog\n";
-system("sdf -2html home catalog");
-print "EXECUTING: sdf -2txt -o- -csdf user/in_insta.sdf > ../INSTALL\n";
-system("sdf -2txt -o- -csdf user/in_insta.sdf > ../INSTALL");
+prep(qw(home catalog));
+
+print "EXECUTING: sdf -2txt -o- -csdf user/in_insta.sdf > INSTALL\n";
+system("sdf -2txt -o- -csdf user/in_insta.sdf > INSTALL");
+
+system("cp --recursive images html/");

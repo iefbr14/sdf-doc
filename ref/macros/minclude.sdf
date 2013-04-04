@@ -24,4 +24,8 @@ SDF document.
 
 H2: Examples
 
+!block example
+!include "macro.sdf"
+!endblock
+
 #H2: Limitations & Future Directions

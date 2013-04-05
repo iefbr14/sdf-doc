@@ -2,5 +2,7 @@
 .*.swp
 Makefile
 *.out
-html/
+
+/html
+
 INSTALL

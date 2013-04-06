@@ -36,8 +36,7 @@ Documentation for local extensions, if any, may be found
 
 P1: Getting started
 
-!block references; \
-  columns=COLUMNS
+!block references; columns=COLUMNS
 Reference
 MTR-SDF-0001
 SDF-FAQ
@@ -46,8 +45,7 @@ MTR-SDF-0003
 
 P1: Manuals
 
-!block references; \
-  columns=COLUMNS
+!block references; columns=COLUMNS
 Reference
 MTR-SDF-0002
 MTR-SDF-0004
@@ -56,8 +54,7 @@ MTR-SDF-0005
 
 P1: Tutorials
 
-!block references; \
-  columns=COLUMNS
+!block references; columns=COLUMNS
 Reference
 MTR-SDF-0011
 MTR-SDF-0012
@@ -65,8 +62,7 @@ MTR-SDF-0012
 
 P1: Other documents
 
-!block references; \
-  columns=COLUMNS
+!block references; columns=COLUMNS
 Reference
 MTR-SDF-0008
 !endblock

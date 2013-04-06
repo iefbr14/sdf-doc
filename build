@@ -79,6 +79,7 @@ my %FMTS = (
     "quickref/qr_sdf",  ['pdf', 'html'],
     "user/ug_sdf",      ['book -zpdf', 'topics'],
     "guru/gg_sdf",      ['book -zpdf', 'topics'],
+    "developer/dg_sdf", ['book -zpdf', 'topics'],
     "ref/re_sdf",       ['book -zpdf', 'topics'],
     "genhtml/index",    ['pdf', 'html'],
     "podusers/index",   ['pdf', 'html'],
@@ -155,7 +156,7 @@ while (defined($doc = shift @ARGV)) {
 	#### BUG IN sdf -O , html files are left in source direcctory)
 	for my $fook (<$dir/*.html>) {
 		my($new) = $fook; $new =~ s=.*/=$Html/$dir/=;
-print "fook $fook => $new\n";
+#print "fook $fook => $new\n";
 		rename($fook, $new);
 	}
 	if (-f "$Html/$dir/$file.html") {

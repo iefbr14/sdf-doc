@@ -1,0 +1,30 @@
+# $Id$
+#
+# >>Copyright::
+# Copyright (c) 2013, Drew Sullivan <drew@ss.org>
+# You may distribute under the terms specified in the LICENSE file.
+#
+# >>History::
+# -----------------------------------------------------------------------
+# Date        Who     Change
+# 2013-Arp-04 drew    SDF 2.2
+# -----------------------------------------------------------------------
+#
+
+H1: Hierarchy
+
+H2: Source
+
+* doc
+* lib
+* lib/sdf
+* home		formally lib/sdf/home
+* catalog/sdf
+* catalog/perl
+
+
+H2: Install
+
+* /usr/local/perl.../sdf
+* ~/.sdf
+* /etc/default/sdf

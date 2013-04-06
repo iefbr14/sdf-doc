@@ -18,8 +18,8 @@
 
 # Define variables
 !define DOC_NAME    "SDF"
-!define DOC_TYPE    "Guru Guide"
-!define DOC_AUTHOR  "Ian Clatworthy"
+!define DOC_TYPE    "Developer Guide"
+!define DOC_AUTHOR  "Drew Sullivan"
 !define DOC_TOC     2
 !define DOC_IX
 
@@ -27,6 +27,5 @@
 !build_title
 
 # Include the document components
-!include "about.sdf"; about
-!include "in_ex.sdf"
-#include "in_api.sdf"
+!include "dg_about.sdf"; about
+!include "dg_hier.sdf"

@@ -1,0 +1,48 @@
+# $Id$
+#
+# >>Copyright::
+# Copyright (c) 2013, Drew Sullivan <drew@ss.org>
+# You may distribute under the terms specified in the LICENSE file.
+#
+# >>History::
+# -----------------------------------------------------------------------
+# Date        Who     Change
+# 2013-Arp-04 drew    SDF 2.2
+# -----------------------------------------------------------------------
+#
+
+H1: About this manual
+
+H2: Purpose
+
+[[SDF]]is a documentation system for software developers.
+
+This manual provides internal documentation on how [[SDF]] 
+works internally and how to add core functionality.
+
+Readers should be familiar with the following documents before
+reading this one:
+
+. {{DOC:The SDF Document Development System}}
+. {{DOC:SDF User Guide}}.
+. {{DOC:SDF Guru Guide}}.
+
+It was written from the persective of someone working on the core
+fuctionality rather than as a document author or site maintainer.
+
+All documentation for new output formats have been moved here
+from the Guru Guide.
+
+H2: Scope
+
+This manual contains information on:
+
+* how the source code is layed out
+* how the install system works
+
+* how to develop an [[SDF]] driver to support a new output format
+* [[SDFAPI]] - the set of Perl libraries provided with SDF.
+
+H2: Amendments
+
+!SDF_AMENDMENTS

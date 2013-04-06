@@ -20,15 +20,15 @@ The programs available are summarised below.
 Name      Purpose
 sdf       convert [[SDF]] files to other formats
 sdfapi    extract the {{Application Programming Interface}} from source code
-sdfbatch  generate [[FrameMaker]] batch files
+#sdfbatch  generate [[FrameMaker]] batch files
 sdfcli    extract the {{Command Line Interface}} from a utility
 sdfget    extract documentation embedded in source code
 sdftest   execute SDF regression tests
-sdngen    build an SDF tuning module from a FrameMaker template
+#sdngen    build an SDF tuning module from a FrameMaker template
 #fm2ps     convert FrameMaker files to PostScript (a wrapper for {{CMD:sdfbatch}})
 #pod2sdf   convert POD to SDF
 #poddiff   compare POD files and report differences
-prn2ps    convert Windows PostScript to Unix PostScript
+#prn2ps    convert Windows PostScript to Unix PostScript
 !endblock
 
 {{CMD:sdf}} is typically invoked as follows:
@@ -63,11 +63,11 @@ Further details on the programs are provided below.
 Topic
 sdf
 sdfapi
-sdfbatch
+#sdfbatch
 sdfcli
 sdfget
 sdftest
-sdngen
-prn2ps
+#sdngen
+#prn2ps
 !endblock
 !off paragraph h2top
